@@ -1,10 +1,9 @@
 ﻿List<Users> info = new List<Users>();
 List<Login> loginList = new List<Login>();
+List<Account> accountList = new List<Account>();
 
 string optBeg = "Y";
 
-
-Console.WriteLine("\n\n");
 
 // While loop to register more than one user
 while (optBeg == "Y")
@@ -46,6 +45,7 @@ _pass:
 
     logObj.password = obj.password;
 
+    logObj.amount = 100;
 
     // If everything is alright, add the complete object (name, last name, age, password) to the list called info.
     info.Add(obj);
@@ -101,7 +101,6 @@ _addReg:
 
 }
 
-
 _test:
 Login log = new Login();
 Console.WriteLine("\nLOGIN\n");
@@ -117,7 +116,10 @@ foreach (var item in loginList)
 {
     if (log.givName == item.name && log.givPass == item.password)
     {
-        Console.WriteLine($"You are logged as {item.name}!");
+        Console.WriteLine($"Hello, {item.name}! Your total amount is US${item.amount}! Add US$100.00?");
+        Console.ReadKey();
+        item.amount += 100;
+        goto _test;
     }
 }
 goto _test;

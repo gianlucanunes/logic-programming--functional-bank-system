@@ -1,4 +1,4 @@
-﻿public class Login
+﻿public class Login : Account
 {
     public string name {  get; set; }
     public string password { get; set; }

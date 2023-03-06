@@ -1,6 +1,7 @@
 ﻿public class Account
 {
+    public string name { get; set; }
     public int accountId { get; set; }
-    public int amount { get; set; }
+    public double amount { get; set; }
 
 }
