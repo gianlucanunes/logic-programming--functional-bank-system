@@ -18,33 +18,33 @@ while (optBeg == "Y")
 _reg:
     Login logObj = new Login();
     Users obj = new Users();
-    Console.Write("\nPlease, enter with the info below.\n");
-    Console.Write("Name: ");
+    Console.Write("\nEntre com as informações abaixo.\n");
+    Console.Write("Nome: ");
     obj.name = Console.ReadLine();
     logObj.name = obj.name;
 
-    Console.Write("Last Name: ");
+    Console.Write("Sobrenome: ");
     obj.lastname = Console.ReadLine();
 
 _age:
-    Console.Write("Age: ");
+    Console.Write("Idade: ");
 
     int ag;
     if (int.TryParse(Console.ReadLine(), out ag))
         obj.age = ag;
     else
     {
-        Console.WriteLine("\nIncorrect value! Please, try filling it again.\n");
+        Console.WriteLine("\nValor incorreto!\n");
         goto _age;
     }
 
 _pass:
-    Console.Write("Password (6 digits): ");
+    Console.Write("Senha,(6 digitos): ");
     obj.password = Console.ReadLine();
 
     if (obj.password.Length != 6)
     {
-        Console.WriteLine("\nThe password you typed does not have 6 digits! Please, try filling it again.\n");
+        Console.WriteLine("\nA senha não tem 6 digitos!\n");
         goto _pass;
     }
 
@@ -57,21 +57,21 @@ _pass:
     // If everything is alright, add the complete object (name, last name, age, password) to the list called info.
     info.Add(obj);
     loginList.Add(logObj);
-    Console.WriteLine("\nUser registered successfully!\n");
+    Console.WriteLine("\nUsuário cadastrado com sucessso!\n");
 
 
     // Asks the user if he wants to create a new register. If so, he goes to the beggining, creating a new user type object.
 _addReg:
-    Console.WriteLine("\nDo you want to register another user?\n[Y] Yes\n[N] No\n");
+    Console.WriteLine("\nQuer registrar um novo usuário?\n[S] Sim\n[N] Não\n");
     string opc = Console.ReadLine().ToUpper();
 
-    if (opc != "Y" && opc != "N")
+    if (opc != "S" && opc != "N")
     {
-        Console.WriteLine("\nERROR: You have selected an incorrect option! Please, try it again.\n");
+        Console.WriteLine("\nOpção inválida!\n");
         goto _addReg;
     }
 
-    else if (opc == "Y")
+    else if (opc == "S")
         goto _reg;
 
     else
@@ -81,21 +81,21 @@ _addReg:
         // Calculates the total of registers.
         int regTotal = info.Count();
 
-        Console.WriteLine($"\nThe collection has a total of {regTotal} registers.\n");
+        Console.WriteLine($"\nA coleção tem {regTotal} registrosn\n");
 
 
     // Asks the user if he wants the program to display the info from each register.
     _regList:
-        Console.WriteLine("\nDo you want to display the info?\n[Y] Yes \n[N] No");
+        Console.WriteLine("\nQuer exibir as informações?\n[S] Sim\n[N] Não");
         string listOpt = Console.ReadLine().ToUpper();
 
-        if (listOpt != "Y" && listOpt != "N")
+        if (listOpt != "S" && listOpt != "N")
         {
-            Console.WriteLine("\nERROR: You have selected an incorrect option! Please, try it again.\n");
+            Console.WriteLine("\nOpção inválida!\n");
             goto _regList;
         }
 
-        else if (listOpt == "Y")
+        else if (listOpt == "S")
         {
             foreach (var item in info)
             {
@@ -112,10 +112,10 @@ _login:
 Login log = new Login();
 Console.WriteLine("\nLOGIN\n");
 
-Console.Write("Name: ");
+Console.Write("Nome: ");
 log.givName = Console.ReadLine();
 
-Console.Write("Password: ");
+Console.Write("Senha: ");
 log.givPass = Console.ReadLine();
 
 
@@ -142,21 +142,21 @@ _menu:
 
         Identyfier idObj = new Identyfier();
 
-        Console.WriteLine($"Hello, {item.name}! Your total amount is US${item.amount}!\nWhich operation you want to do?\n\n[W] Withdrawal\n[D] Deposit\n[T] Transfer\n[L] Logoff\n");
+        Console.WriteLine($"Olá, {item.name}! Seu saldo é R${item.amount}!\nQual operação deseja realizar?\n\n[S]Saque\n[D] Depósito\n[T] Transferência \n[L] Logoff\n");
         
     _op:
         string op = Console.ReadLine().ToUpper();
 
         switch (op)
         {
-            case "W":
+            case "S":
                 _wd:
-                Console.Write("\nPlease, type the amount of money to withdraw: US$");
+                Console.Write("\nDigite o valor a ser sacado: R$");
                 
                 if (double.TryParse(Console.ReadLine(), out amount)) {
                     if (amount > item.amount)
                     {
-                        Console.WriteLine("\nYou do not have the money! Type a less amount.\n");
+                        Console.WriteLine("\nVocê não tem dinheiro pra esse valor.\n");
                         goto _wd;
                     }
 
@@ -165,18 +165,18 @@ _menu:
                 
                     item.amount = ser.Withdraw();
 
-                    Console.WriteLine($"\nThe total of US${ser.value} has beeen withdrawed from your account!\n");
+                    Console.WriteLine($"\nO total de R${ser.value} foi sacado da sua conta!\n");
                     goto _menu;
                 }
                 else
                 {
-                    Console.WriteLine("\nERROR: Incorrect value! Try it again!\n");
+                    Console.WriteLine("\nOpção inválida!\n");
                     goto _wd;
                 }
 
             case "D":
             _de:
-                Console.Write("\nPlease, type the amount of money to withdraw: US$");
+                Console.Write("\nDigite o valor a ser depositado: R$");
 
                 if (double.TryParse(Console.ReadLine(), out amount))
                 {
@@ -185,28 +185,28 @@ _menu:
 
                     item.amount = ser.Deposit();
 
-                    Console.WriteLine($"\nThe total of US${ser.value} has beeen added to your account!\n");
+                    Console.WriteLine($"\nO total de R${ser.value} foi depositado em sua conta!\n");
                     goto _menu;
                 }
                 else
                 {
-                    Console.WriteLine("\nERROR: Incorrect value! Try it again!\n");
+                    Console.WriteLine("\nOpção inválida!\n");
                     goto _de;
                 }
 
             case "T":
-                Console.Write("\nPlease, type the amount of money to transfer: ");
+                Console.Write("\nDigite o valor a ser transferido: R$");
                 if (double.TryParse(Console.ReadLine(), out amount))
                 {
                     _id:
-                    Console.WriteLine("\nWhich is the account ID?");
+                    Console.WriteLine("\nQual é o ID da conta que receberá a transferência?");
                     Console.Write("ID: ");
 
                     if (int.TryParse(Console.ReadLine(), out givId))
                     {
                         if (givId == item.accountId)
                         {
-                            Console.WriteLine("\nYou can't transfer money to yourself! Type another ID!\n");
+                            Console.WriteLine("\nVocê não pode transferir para si mesmo!\n");
                             goto _id;
                         }
 
@@ -219,14 +219,14 @@ _menu:
 
                         idObjs.Add(idObj);
 
-                        Console.WriteLine($"\nSucessfully trasnfered US${amount} from your account!");
+                        Console.WriteLine($"\nA transferência de R${amount} foi feita!");
                         goto _menu;
                         
                     }
 
                     else
                     {
-                        Console.WriteLine("\nERROR: Incorrect value! Try it again!\n");
+                        Console.WriteLine("\nOpção inválida!\n");
                         goto _id;
                     }
                 }
@@ -236,7 +236,7 @@ _menu:
                 goto _login;
 
             default:
-                Console.WriteLine("\nERROR: You have selected an incorrect option! Please, try it again.\n");
+                Console.WriteLine("\nOpção inválida.\n");
                 goto _op;
         } 
     }
