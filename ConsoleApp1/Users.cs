@@ -8,7 +8,7 @@
 
     public string ShowInfo()
     {
-        return $"Name: {name} {lastname} - Age: {age} years old - Password: {password}";
+        return $"\nName: {name} {lastname}\nAge: {age} years old\nPassword: {password}\n";
     }
 
 }
