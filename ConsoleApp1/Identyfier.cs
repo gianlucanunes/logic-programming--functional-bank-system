@@ -1,6 +1,7 @@
-﻿public class Identyfier
+﻿// Creating the public lass Identyfier
+public class Identyfier
 {
-    public int idIden { get; set;}
-
-    public double trValue { get; set; }
+    // Creating the class properties
+    public int IdIden { get; set; }
+    public double TrValue { get; set; }
 }

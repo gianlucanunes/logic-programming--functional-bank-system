@@ -1,7 +1,7 @@
-﻿public class Login : Account
+﻿// Creating the public class Login, which will inherit from the super class Account
+public class Login : Account
 {
-    public string name {  get; set; }
-    public string password { get; set; }
-    public string givName { get; set; }
-    public string givPass { get; set; }
+    // Creating the class properties
+    public string GivName { get; set; }
+    public string GivPass { get; set; }
 }
